@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Demorse By Light</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Sobre</string>
+    <string name="begin">Começar</string>
+    <string name="light_sensibility">Sensibilidade à luz</string>
+    <string name="speed">Velocidade</string>
+    <string name="reading">Lendo...</string>
+    <string name="level_light">Nível de luz</string>
+    <string name="stop">Parar</string>
+    <string name="develop_by">Desenvolvido por Gustavo Fabro</string>
+    <string name="null_sensor">Sensor de luz não encontrado :(</string>
+    <string name="error">Erro</string>
+    <string name="about">Sobre</string>
+    <string name="back">Voltar</string>
+</resources>

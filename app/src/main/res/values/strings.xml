@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Demorse by Light</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">About</string>
+    <string name="begin">Begin</string>
+    <string name="light_sensibility">Sensibility to light</string>
+    <string name="speed">Speed</string>
+    <string name="reading">Reading...</string>
+    <string name="level_light">Light level</string>
+    <string name="stop">Stop</string>
+    <string name="develop_by">Develop by Gustavo Fabro</string>
+    <string name="null_sensor">Light sensor not found :(</string>
+    <string name="error">Error</string>
+    <string name="about">About</string>
+    <string name="back">Back</string>
+
+
+
+</resources>
