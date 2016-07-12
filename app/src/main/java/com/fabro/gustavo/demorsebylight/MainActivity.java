@@ -20,6 +20,8 @@ package com.fabro.gustavo.demorsebylight;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -32,6 +34,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -48,13 +53,14 @@ public class MainActivity extends AppCompatActivity {
     private boolean isBeginOff = false, isBeginOn = true;
 
     Decoder decode = new Decoder();
-    TextView textLight_reading, morseOut, textSensibilityChange, textSpeedReading;
+    TextView textLight_reading, morseOut, textSensibilityChange, textSpeedReading, reading;
 
     SensorManager mySensorManager;
     Sensor LightSensor;
     Button btnBegin;
     SeekBar seekBarSensibility, seekBarSpeedReading;
 
+    Animation anim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,9 +75,17 @@ public class MainActivity extends AppCompatActivity {
         textSensibilityChange = (TextView) findViewById(R.id.SensibilityChange);
         textSpeedReading = (TextView) findViewById((R.id.SpeedReading));
         morseOut = (TextView) findViewById(R.id.morseOutText);
-
+        reading = (TextView) findViewById(R.id.reading_alert);
         mySensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         LightSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+
+        reading.setTextColor(Color.RED);
+
+        anim = new AlphaAnimation(0.5f, 1.0f);
+        anim.setDuration(200);
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
 
         if (LightSensor == null) {
             AlertDialog.Builder dialogOut = new AlertDialog.Builder(MainActivity.this);
@@ -149,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             final AlertDialog.Builder dialogOut = new AlertDialog.Builder(MainActivity.this);
             dialogOut.setMessage(getString(R.string.develop_by));
-
+            dialogOut.setPositiveButton("OK", null);
             dialogOut.show();
             return true;
         }
@@ -197,7 +211,8 @@ public class MainActivity extends AppCompatActivity {
             seekBarSpeedReading.setEnabled(false);
             btnBegin.setText(R.string.stop);
             registerListener();
-            morseOut.setText(R.string.reading);
+            reading.setText(R.string.reading);
+            reading.startAnimation(anim);
         }else {
             seekBarSensibility.setEnabled(true);
             seekBarSpeedReading.setEnabled(true);
@@ -207,13 +222,12 @@ public class MainActivity extends AppCompatActivity {
             textLight_reading.setText("");
             mySensorManager.unregisterListener(LightSensorListener);
             decode.setConvertido("");
-
+            reading.setText("");
             isBeginOff = false;
             isBeginOn = true;
             timeOff = 0;
             timeOn = 0;
         }
-
     }
 
     private final SensorEventListener LightSensorListener = new SensorEventListener(){ //called when sensor values have changed.
@@ -266,6 +280,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-
 }
