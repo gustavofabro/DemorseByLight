@@ -57,7 +57,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:max="3995"
+        android:max="3999"
         android:progress="2995"
         android:layout_below="@+id/BtnBegin"
         android:layout_alignStart="@+id/SeekBarSpeedReading" />
