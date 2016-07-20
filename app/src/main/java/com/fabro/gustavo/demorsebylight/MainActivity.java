@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     SeekBar seekBarSensibility, seekBarSpeedReading;
 
     Animation anim;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -174,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setNewSensibilityChange(int progress){
         this.levelLightOn = progress;
-        textSensibilityChange.setText(getString(R.string.light_sensibility) + ": " + (levelLightOn + 1));
+        textSensibilityChange.setText(getString(R.string.light_sensibility) + ": " + (levelLightOn));
     }
 
     public void setNewSpeedReading(int progress){
